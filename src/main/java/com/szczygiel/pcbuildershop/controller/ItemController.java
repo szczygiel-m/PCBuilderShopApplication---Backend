@@ -15,4 +15,9 @@ public class ItemController {
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
     }
+
+//    @GetMapping("{itemID}")
+//    public ResponseEntity<Optional<Item>> getItem(@PathVariable Long itemID) {
+//        return new ResponseEntity<>()
+//    }
 }

@@ -1,3 +1,3 @@
 # PCBuilderShopApplication
 
-Simple shop project to learn swing
+Simple shop project to learn spring

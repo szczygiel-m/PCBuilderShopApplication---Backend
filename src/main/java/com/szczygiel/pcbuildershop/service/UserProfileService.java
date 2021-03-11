@@ -20,6 +20,18 @@ public class UserProfileService {
     }
 
     public String login(String userName, String password) {
-        return null;
+        UserProfile userProfile = userProfileRepository.findByUsername(userName);
+
+        if(userProfile != null){
+            if(userProfile.getPassword().equals(password)) {
+                return "Succesfuly logged in!";
+            }
+        }
+
+        return "Invalid Field 'username' or 'password'";
+    }
+
+    public UserProfile registerUser(UserProfile userProfile) {
+        return userProfileRepository.save(userProfile);
     }
 }

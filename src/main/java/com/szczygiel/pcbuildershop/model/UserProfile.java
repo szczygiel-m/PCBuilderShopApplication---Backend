@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,13 +19,20 @@ public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private Long Id;
+
+    @NotBlank(message = "Field 'username' is mandatory")
+    @Size(min = 8, max = 32, message = "Field 'username' should be longer than 8 chars and shorter than 32")
+    private String username;
+
+    @NotBlank(message = "Field 'password' is mandatory")
+    @Size(min = 8, max = 32, message = "Field 'password' should be longer than 8 chars and shorter than 32")
+    private String password;
 
     @NotNull
-    private String username;
-    @NotNull
-    private String password;
-    @NotNull
-    @Email
+    @Email(message = "Field 'email' should be valid")
     private String email;
+
+    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Item> items;
 }

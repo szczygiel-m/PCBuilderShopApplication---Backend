@@ -1,17 +1,15 @@
 package com.szczygiel.pcbuildershop.controller;
 
-import com.szczygiel.pcbuildershop.model.Item;
+import com.szczygiel.pcbuildershop.dto.ItemDto;
+import com.szczygiel.pcbuildershop.model.Category;
 import com.szczygiel.pcbuildershop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/category")
+@RequestMapping("category")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -21,8 +19,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("{category}")
-    public ResponseEntity<Iterable<Item>> getItems(@PathVariable String category) {
-        return new ResponseEntity<>(categoryService.getAllItemsByCategory(category), HttpStatus.OK);
+    @GetMapping()
+    public List<ItemDto> getItems(@RequestParam Long categoryId) {
+        return categoryService.getItemsByCategory(categoryId);
+    }
+
+    @PostMapping()
+    public Category addCategory(@RequestBody Category category) {
+        return categoryService.addCategory(category);
     }
 }

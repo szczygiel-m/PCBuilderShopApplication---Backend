@@ -2,15 +2,13 @@ package com.szczygiel.pcbuildershop.controller;
 
 import com.szczygiel.pcbuildershop.model.UserProfile;
 import com.szczygiel.pcbuildershop.service.UserProfileService;
-import org.hibernate.cfg.NotYetImplementedException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("user")
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
@@ -20,17 +18,17 @@ public class UserProfileController {
     }
 
     @GetMapping("{userID}")
-    public ResponseEntity<Optional<UserProfile>> getUser(@PathVariable Long userID) {
-        return new ResponseEntity<>(userProfileService.getUserProfile(userID), HttpStatus.OK);
+    public Optional<UserProfile> getUser(@PathVariable Long userID) {
+        return userProfileService.getUserProfile(userID);
     }
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody String userName, @RequestBody String password) {
-        return new ResponseEntity<>(userProfileService.login(userName, password), HttpStatus.OK);
+    public String login(@RequestBody String userName, @RequestBody String password) {
+        return userProfileService.login(userName, password);
     }
 
     @PostMapping("register")
-    public NotYetImplementedException register() {
-        return new NotYetImplementedException();
+    public UserProfile register(UserProfile userProfile) {
+        return userProfileService.registerUser(userProfile);
     }
 }

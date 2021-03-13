@@ -1,5 +1,7 @@
 package com.szczygiel.pcbuildershop.controller;
 
+import com.szczygiel.pcbuildershop.dto.LoginDto;
+import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.model.UserProfile;
 import com.szczygiel.pcbuildershop.service.UserProfileService;
 
@@ -23,12 +25,12 @@ public class UserProfileController {
     }
 
     @PostMapping("login")
-    public String login(@RequestBody String userName, @RequestBody String password) {
-        return userProfileService.login(userName, password);
+    public String login(@RequestBody LoginDto loginDto) {
+        return userProfileService.login(loginDto);
     }
 
     @PostMapping("register")
-    public UserProfile register(UserProfile userProfile) {
+    public UserProfile register(RegisterDto userProfile) {
         return userProfileService.registerUser(userProfile);
     }
 }

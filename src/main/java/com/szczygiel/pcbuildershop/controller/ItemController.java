@@ -5,7 +5,7 @@ import com.szczygiel.pcbuildershop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("item")
@@ -19,12 +19,17 @@ public class ItemController {
     }
 
     @GetMapping("{itemID}")
-    public Optional<Item> getItemById(Long itemID) {
-        return itemService.getItem(itemID);
+    public Item getItemById(Long itemID) {
+        return itemService.getItem(itemID).orElseThrow();
+    }
+
+    @GetMapping
+    public List<Item> getItemsByCategory(@RequestParam Long categoryId, @RequestParam int page, @RequestParam int size) {
+        return itemService.getItemsByCategory(categoryId, page, size);
     }
 
     @PutMapping
-    public Optional<Item> editItem(@RequestBody Item item) {
+    public Item editItem(@RequestBody Item item) {
         return itemService.editItem(item);
     }
 

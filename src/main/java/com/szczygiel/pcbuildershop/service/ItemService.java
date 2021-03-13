@@ -2,9 +2,11 @@ package com.szczygiel.pcbuildershop.service;
 
 import com.szczygiel.pcbuildershop.model.Item;
 import com.szczygiel.pcbuildershop.repository.ItemRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,16 +23,12 @@ public class ItemService {
     }
 
     @Transactional
-    public Optional<Item> editItem(Item item) {
-        Optional<Item> itemEdited = itemRepository.findById(item.getId());
+    public Item editItem(Item item) {
+        Item itemEdited = itemRepository.findById(item.getId()).orElseThrow();
 
-        if(itemEdited.isPresent()){
-            itemEdited.orElseGet(null).setTitle(item.getTitle());
-            itemEdited.orElseGet(null).setDescription(item.getDescription());
-            itemEdited.orElseGet(null).setPrice(item.getPrice());
-
-            return itemEdited;
-        }
+        itemEdited.setTitle(item.getTitle());
+        itemEdited.setDescription(item.getDescription());
+        itemEdited.setPrice(item.getPrice());
 
         return itemEdited;
     }
@@ -41,5 +39,9 @@ public class ItemService {
 
     public void deleteItem(Long itemID) {
         itemRepository.deleteById(itemID);
+    }
+
+    public List<Item> getItemsByCategory(Long categoryId, int page, int size) {
+        return itemRepository.findAllByCategoryId(categoryId, PageRequest.of(page, size));
     }
 }

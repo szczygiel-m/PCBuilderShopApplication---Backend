@@ -1,5 +1,8 @@
 package com.szczygiel.pcbuildershop.service;
 
+import com.szczygiel.pcbuildershop.dto.Converter;
+import com.szczygiel.pcbuildershop.dto.LoginDto;
+import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.model.UserProfile;
 import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
 import org.springframework.stereotype.Service;
@@ -19,19 +22,17 @@ public class UserProfileService {
         return userProfileRepository.findById(userID);
     }
 
-    public String login(String userName, String password) {
-        UserProfile userProfile = userProfileRepository.findByUsername(userName);
-
+    public String login(LoginDto loginDto) {
+        UserProfile userProfile = userProfileRepository.findByUsername(loginDto.getUsername());
         if(userProfile != null){
-            if(userProfile.getPassword().equals(password)) {
+            if(userProfile.getPassword().equals(loginDto.getPassword())) {
                 return "Succesfuly logged in!";
             }
         }
-
         return "Invalid Field 'username' or 'password'";
     }
 
-    public UserProfile registerUser(UserProfile userProfile) {
-        return userProfileRepository.save(userProfile);
+    public UserProfile registerUser(RegisterDto userProfile) {
+        return userProfileRepository.save(Converter.registerDtoToUser(userProfile));
     }
 }

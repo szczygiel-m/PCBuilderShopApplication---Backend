@@ -1,5 +1,6 @@
 package com.szczygiel.pcbuildershop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class UserProfile {
     @Email(message = "Field 'email' should be valid")
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "userProfile", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Item> items;
 }

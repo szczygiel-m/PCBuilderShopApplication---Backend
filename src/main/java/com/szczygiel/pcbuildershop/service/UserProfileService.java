@@ -18,8 +18,8 @@ public class UserProfileService {
         this.userProfileRepository = userProfileRepository;
     }
 
-    public Optional<UserProfile> getUserProfile(Long userID){
-        return userProfileRepository.findById(userID);
+    public Optional<UserProfile> getUserProfile(Long userId){
+        return userProfileRepository.findById(userId);
     }
 
     public String login(LoginDto loginDto) {

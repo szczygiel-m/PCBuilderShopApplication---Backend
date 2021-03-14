@@ -1,5 +1,6 @@
 package com.szczygiel.pcbuildershop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,5 +25,6 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonManagedReference
     private List<Item> items;
 }

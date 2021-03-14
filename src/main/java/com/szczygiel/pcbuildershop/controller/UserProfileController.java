@@ -17,10 +17,10 @@ public class UserProfileController {
         this.userProfileService = userProfileService;
     }
 
-    @GetMapping("{userID}")
-    public UserProfile getUser(@PathVariable Long userID) {
-        return userProfileService.getUserProfile(userID)
-                .orElseThrow(() -> new UserNotFoundException(userID));
+    @GetMapping("{userId}")
+    public UserProfile getUser(@PathVariable Long userId) {
+        return userProfileService.getUserProfile(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
     }
 
     @PostMapping("login")

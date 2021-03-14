@@ -1,5 +1,6 @@
 package com.szczygiel.pcbuildershop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,9 +23,11 @@ public class Item {
 
     @NotBlank(message = "Field 'category' is mandatory")
     @ManyToOne
+    @JsonBackReference
     private Category category;
 
     @ManyToOne
+    @JsonBackReference
     private UserProfile userProfile;
 
     @NotBlank(message = "Field 'itemTitle' is mandatory")

@@ -44,4 +44,20 @@ public class ItemService {
     public List<Item> getItemsByCategory(Long categoryId, int page, int size) {
         return itemRepository.findAllByCategoryId(categoryId, PageRequest.of(page, size));
     }
+
+    public List<Item> getItemsByUser(Long userId, int page, int size){
+        return itemRepository.findAllByUserId(userId, PageRequest.of(page, size));
+    }
+
+    public List<Item> getItemsByPhrase(String phrase, int page, int size) {
+        return itemRepository.findByPhrase(phrase, PageRequest.of(page, size));
+    }
+
+    public List<Item> getItemsByPhraseAndCategory(String phrase, Long categoryId, int page, int size) {
+        return itemRepository.findByPhraseAndCategory(phrase, categoryId, PageRequest.of(page, size));
+    }
+
+    public boolean isItemExists(Long itemId) {
+        return !itemRepository.existsById(itemId);
+    }
 }

@@ -1,5 +1,7 @@
 package com.szczygiel.pcbuildershop.service;
 
+import com.szczygiel.pcbuildershop.dto.CategoryDto;
+import com.szczygiel.pcbuildershop.dto.Converter;
 import com.szczygiel.pcbuildershop.model.Category;
 import com.szczygiel.pcbuildershop.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category addCategory(Category category) {
-        return categoryRepository.save(category);
+    public Category addCategory(CategoryDto category) {
+        return categoryRepository.save(Converter.dtoToCategory(category));
     }
 }

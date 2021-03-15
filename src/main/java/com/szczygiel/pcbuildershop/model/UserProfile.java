@@ -1,7 +1,6 @@
 package com.szczygiel.pcbuildershop.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,16 +21,16 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
-    @NotBlank(message = "Field 'username' is mandatory")
-    @Size(min = 8, max = 32, message = "Field 'username' should be longer than 8 chars and shorter than 32")
+    @NotBlank(message = "Field 'username' is mandatory.")
+    @Size(min = 8, max = 32, message = "Field 'username' should be minimum 8 chars and maximum 32 chars.")
     private String username;
 
-    @NotBlank(message = "Field 'password' is mandatory")
-    @Size(min = 8, max = 32, message = "Field 'password' should be longer than 8 chars and shorter than 32")
+    @NotBlank(message = "Field 'password' is mandatory.")
+    @Size(min = 8, max = 32, message = "Field 'password' should be minimum 8 chars and maximum 32 chars.")
     private String password;
 
-    @NotNull
-    @Email(message = "Field 'email' should be valid")
+    @NotBlank(message = "Field 'email' is mandatory.")
+    @Email(message = "Field 'email' should be valid.")
     private String email;
 
     @JsonManagedReference

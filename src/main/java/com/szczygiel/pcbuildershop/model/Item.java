@@ -7,7 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -30,14 +31,15 @@ public class Item {
     @JsonBackReference
     private UserProfile userProfile;
 
-    @NotBlank(message = "Field 'itemTitle' is mandatory")
+    @Size(min = 4, max = 32, message = "Field 'category' should be minimum 4 chars and maximum 32 chars.")
     private String title;
 
+    @Size(max = 250, message = "Field 'description' should be max 250 chars.")
     private String description;
 
     @NotBlank(message = "Field 'created' should be valid")
     private LocalDateTime created;
 
-    @Positive(message = "Field 'price' should be positive")
+    @PositiveOrZero(message = "Field 'price' should be positive or zero.")
     private BigDecimal price;
 }

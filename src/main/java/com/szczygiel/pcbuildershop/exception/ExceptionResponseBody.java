@@ -1,8 +1,9 @@
 package com.szczygiel.pcbuildershop.exception;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -10,5 +11,5 @@ public class ExceptionResponseBody {
 
     private String status;
     private String message;
-    private Timestamp timestamp;
+    private LocalDateTime timestamp;
 }

@@ -1,11 +1,15 @@
 package com.szczygiel.pcbuildershop.service;
 
+import com.szczygiel.pcbuildershop.dto.AddItemDto;
+import com.szczygiel.pcbuildershop.dto.Converter;
+import com.szczygiel.pcbuildershop.dto.EditItemDto;
 import com.szczygiel.pcbuildershop.model.Item;
 import com.szczygiel.pcbuildershop.repository.ItemRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +27,19 @@ public class ItemService {
     }
 
     @Transactional
-    public Item editItem(Item item) {
+    public EditItemDto editItem(EditItemDto item) {
         Item itemEdited = itemRepository.findById(item.getId()).orElseThrow();
 
         itemEdited.setTitle(item.getTitle());
         itemEdited.setDescription(item.getDescription());
-        itemEdited.setPrice(item.getPrice());
+        itemEdited.setPrice(item.getPrice().setScale(2, RoundingMode.CEILING));
 
-        return itemEdited;
+        return item;
     }
 
-    public Item addItem(Item item) {
-        return itemRepository.save(item);
+    public Item addItem(AddItemDto itemDto) {
+        itemDto.setPrice(itemDto.getPrice().setScale(2, RoundingMode.CEILING));
+        return itemRepository.save(Converter.dtoToItem(itemDto));
     }
 
     public void deleteItem(Long itemID) {

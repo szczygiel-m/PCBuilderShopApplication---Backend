@@ -1,7 +1,7 @@
 package com.szczygiel.pcbuildershop.service;
 
 import com.szczygiel.pcbuildershop.dto.Converter;
-import com.szczygiel.pcbuildershop.dto.GetUserDto;
+import com.szczygiel.pcbuildershop.dto.UserDto;
 import com.szczygiel.pcbuildershop.dto.LoginDto;
 import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.model.UserProfile;
@@ -19,10 +19,10 @@ public class UserProfileService {
         this.userProfileRepository = userProfileRepository;
     }
 
-    public Optional<GetUserDto> getUserProfile(Long userId){
+    public Optional<UserDto> getUserProfile(Long userId){
         Optional<UserProfile> user = userProfileRepository.findById(userId);
 
-        return user.map(userProfile -> new GetUserDto(userProfile.getUsername(), userProfile.getItems()));
+        return user.map(userProfile -> new UserDto(userProfile.getUsername(), userProfile.getItems()));
     }
 
     public String login(LoginDto loginDto) {

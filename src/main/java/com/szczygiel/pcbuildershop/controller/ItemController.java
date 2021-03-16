@@ -1,16 +1,17 @@
 package com.szczygiel.pcbuildershop.controller;
 
-import com.szczygiel.pcbuildershop.dto.AddItemDto;
-import com.szczygiel.pcbuildershop.dto.EditItemDto;
+import com.szczygiel.pcbuildershop.dto.ItemDto;
+import com.szczygiel.pcbuildershop.dto.ItemSearchRequest;
 import com.szczygiel.pcbuildershop.exception.InvalidItemException;
+import com.szczygiel.pcbuildershop.exception.InvalidRequestException;
 import com.szczygiel.pcbuildershop.exception.ItemNotFoundException;
-import com.szczygiel.pcbuildershop.model.Item;
 import com.szczygiel.pcbuildershop.service.ItemService;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("item")
@@ -28,48 +29,22 @@ public class ItemController {
     }
 
     @GetMapping("{itemID}")
-    public Item getItemById(Long itemID) {
+    public ItemDto getItemById(Long itemID) {
         return itemService.getItem(itemID)
                 .orElseThrow(() -> new ItemNotFoundException(itemID));
     }
 
-    @GetMapping("category")
-    public List<Item> getItemsByCategory(@RequestParam Long categoryId, @RequestParam int page, @RequestParam int size) {
-        page = validationUtil.validatePage(page);
-        size = validationUtil.validateSize(size);
-
-        return itemService.getItemsByCategory(categoryId, page, size);
-    }
-
-    @GetMapping("user")
-    public List<Item> getItemsByUser(@RequestParam Long userId, @RequestParam int page, @RequestParam int size) {
-        page = validationUtil.validatePage(page);
-        size = validationUtil.validateSize(size);
-
-        return itemService.getItemsByUser(userId, page, size);
-    }
-
     @GetMapping("search")
-    public List<Item> getItemsByPhrase(@RequestParam String phrase, @RequestParam int page, @RequestParam int size) {
-        page = validationUtil.validatePage(page);
-        size = validationUtil.validateSize(size);
+    public Page<ItemDto> searchForItems(ItemSearchRequest request, @ApiIgnore Errors errors) {
+        if(errors.hasErrors()) {
+            throw new InvalidRequestException(validationUtil.getErrorsMessages(errors));
+        }
 
-        return itemService.getItemsByPhrase(phrase, page, size);
-    }
-
-    @GetMapping("search/category")
-    public List<Item> getItemsByPhraseAndCategory(
-            @RequestParam String phrase,
-            @RequestParam Long categoryId,
-            @RequestParam int page,
-            @RequestParam int size) {
-        page = validationUtil.validatePage(page);
-        size = validationUtil.validateSize(size);
-        return itemService.getItemsByPhraseAndCategory(phrase, categoryId, page, size);
+        return itemService.searchForItems(request);
     }
 
     @PutMapping
-    public EditItemDto editItem(@RequestBody EditItemDto editedItem) {
+    public ItemDto editItem(@RequestBody ItemDto editedItem) {
         if (itemService.isItemExists(editedItem.getId())) {
             throw new ItemNotFoundException(editedItem.getId());
         }
@@ -77,7 +52,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public Item addItem(@RequestBody AddItemDto itemDto){
+    public ItemDto addItem(@RequestBody ItemDto itemDto){
         String errors = validationUtil.validItemDto(itemDto);
 
         if(!errors.isEmpty()) {

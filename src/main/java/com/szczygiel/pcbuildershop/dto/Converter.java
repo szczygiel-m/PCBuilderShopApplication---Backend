@@ -5,8 +5,12 @@ import com.szczygiel.pcbuildershop.model.Item;
 import com.szczygiel.pcbuildershop.model.UserProfile;
 import com.szczygiel.pcbuildershop.repository.CategoryRepository;
 import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Converter {
 
@@ -30,7 +34,7 @@ public class Converter {
         return newCategory;
     }
 
-    public static Item dtoToItem(AddItemDto itemDto) {
+    public static Item dtoToItem(ItemDto itemDto) {
         Item newItem = new Item();
         newItem.setTitle(itemDto.getTitle());
         newItem.setPrice(itemDto.getPrice());
@@ -44,5 +48,21 @@ public class Converter {
                 .orElseThrow());
 
         return newItem;
+    }
+
+    public static ItemDto itemToDto(Item item) {
+        return new ItemDto(item.getId(),
+                item.getCategory().getId(),
+                item.getUserProfile().getId(),
+                item.getCreated(),
+                item.getTitle(),
+                item.getDescription(),
+                item.getPrice());
+    }
+
+    public static Page<ItemDto> itemPageToDto(Page<Item> allItems) {
+        List<ItemDto> itemsListed = allItems.stream().map(Converter::itemToDto).collect(Collectors.toList());
+
+        return new PageImpl<>(itemsListed);
     }
 }

@@ -1,6 +1,6 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.dto.AddItemDto;
+import com.szczygiel.pcbuildershop.dto.ItemDto;
 import com.szczygiel.pcbuildershop.repository.CategoryRepository;
 import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -30,7 +30,7 @@ public class ValidationUtil {
         return String.join(". ", errorsMessages);
     }
 
-    public String validItemDto(AddItemDto itemDto) {
+    public String validItemDto(ItemDto itemDto) {
         String response = "";
 
         if(!isUserExisting(itemDto.getUserId())) {
@@ -79,5 +79,11 @@ public class ValidationUtil {
         }
 
         return size;
+    }
+
+    public String validateSortParam(String sortParam) {
+        if(sortParam.equals("created") || sortParam.equals("price"))
+            return sortParam;
+        return "created";
     }
 }

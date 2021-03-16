@@ -28,7 +28,8 @@ public class ExceptionHandler {
             {InvalidItemException.class,
             InvalidLoginException.class,
             InvalidCategoryException.class,
-            InvalidRegisterException.class}
+            InvalidRegisterException.class,
+            InvalidRequestException.class}
     )
     public ExceptionResponseBody badRequestHandler(RuntimeException e) {
         responseBody.setMessage(e.getMessage());

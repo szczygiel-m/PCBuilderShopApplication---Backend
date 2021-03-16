@@ -1,9 +1,8 @@
 package com.szczygiel.pcbuildershop;
 
-import com.szczygiel.pcbuildershop.dto.AddItemDto;
+import com.szczygiel.pcbuildershop.dto.ItemDto;
 import com.szczygiel.pcbuildershop.dto.CategoryDto;
 import com.szczygiel.pcbuildershop.dto.RegisterDto;
-import com.szczygiel.pcbuildershop.model.Item;
 
 import java.util.List;
 
@@ -25,9 +24,9 @@ public class ControllerTestSamples {
         );
     }
 
-    public static List<AddItemDto> getItemSamples() {
+    public static List<ItemDto> getItemSamples() {
         return List.of(
-                new AddItemDto()
+                new ItemDto()
         );
     }
 }

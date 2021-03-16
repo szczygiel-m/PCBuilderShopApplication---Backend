@@ -1,6 +1,6 @@
 package com.szczygiel.pcbuildershop.controller;
 
-import com.szczygiel.pcbuildershop.dto.GetUserDto;
+import com.szczygiel.pcbuildershop.dto.UserDto;
 import com.szczygiel.pcbuildershop.dto.LoginDto;
 import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.exception.InvalidLoginException;
@@ -28,7 +28,7 @@ public class UserProfileController {
     }
 
     @GetMapping("{userId}")
-    public GetUserDto getUser(@PathVariable Long userId) {
+    public UserDto getUser(@PathVariable Long userId) {
         return userProfileService.getUserProfile(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
     }

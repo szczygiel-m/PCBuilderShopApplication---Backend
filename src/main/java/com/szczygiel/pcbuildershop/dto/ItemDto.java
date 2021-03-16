@@ -4,20 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class EditItemDto {
+public class ItemDto {
 
-    @Id
-    private Long Id;
+    private final Long id;
 
-    @Size(min = 4, max = 32, message = "Field 'category' should be minimum 4 chars and maximum 32 chars.")
+    @NotBlank(message = "Field 'categoryId' is mandatory.")
+    private final Long categoryId;
+
+    @NotBlank(message = "Field 'categoryId' is mandatory.")
+    private final Long userId;
+
+    @NotBlank(message = "Field 'created' should be valid")
+    private final LocalDateTime created;
+
+    @Size(min = 4, max = 32, message = "Field 'title' should be minimum 4 chars and maximum 32 chars.")
     private String title;
 
     @Size(max = 250, message = "Field 'description' should be max 250 chars.")

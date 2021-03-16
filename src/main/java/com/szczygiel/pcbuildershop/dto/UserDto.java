@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class GetUserDto {
+public class UserDto {
 
     @NotBlank(message = "Field 'username' is mandatory.")
     @Size(min = 8, max = 32, message = "Field 'username' should be minimum 8 chars and maximum 32 chars.")

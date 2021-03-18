@@ -24,7 +24,7 @@ public class ItemDto {
     private final Long userId;
 
     @NotBlank(message = "Field 'created' should be valid")
-    private final LocalDateTime created;
+    private LocalDateTime created;
 
     @Size(min = 4, max = 32, message = "Field 'title' should be minimum 4 chars and maximum 32 chars.")
     private String title;

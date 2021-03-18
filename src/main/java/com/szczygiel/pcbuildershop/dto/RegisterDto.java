@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class RegisterDto {
 
-    @Size(min = 8, max = 32, message = "Field 'username' should be minimum 8 chars and maximum 32 chars.")
+    @Size(min = 4, max = 32, message = "Field 'username' should be minimum 4 chars and maximum 32 chars.")
     private final String username;
 
     @Size(min = 8, max = 32, message = "Field 'password' should be minimum 8 chars and maximum 32 chars.")

@@ -44,6 +44,9 @@ public class UserProfileController {
 
     @PostMapping("register")
     public UserProfile register(@Valid @RequestBody RegisterDto userProfile, @ApiIgnore Errors errors) {
+        if(!validationUtil.isRegisterDtoValid(userProfile)) {
+            throw new InvalidRegisterException("Username or email already used.");
+        }
         if(errors.hasErrors()) {
             throw new InvalidRegisterException(validationUtil.getErrorsMessages(errors));
         }

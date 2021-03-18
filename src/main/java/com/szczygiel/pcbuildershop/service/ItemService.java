@@ -1,6 +1,6 @@
 package com.szczygiel.pcbuildershop.service;
 
-import com.szczygiel.pcbuildershop.dto.Converter;
+import com.szczygiel.pcbuildershop.util.DtoConverter;
 import com.szczygiel.pcbuildershop.dto.ItemDto;
 import com.szczygiel.pcbuildershop.dto.ItemSearchRequest;
 import com.szczygiel.pcbuildershop.model.Item;
@@ -20,10 +20,12 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
     private final ValidationUtil validationUtil;
+    private final DtoConverter converter;
 
-    public ItemService(ItemRepository itemRepository, ValidationUtil validationUtil) {
+    public ItemService(ItemRepository itemRepository, ValidationUtil validationUtil, DtoConverter converter) {
         this.itemRepository = itemRepository;
         this.validationUtil = validationUtil;
+        this.converter = converter;
     }
 
     public Optional<ItemDto> getItem(Long itemID) {
@@ -55,7 +57,7 @@ public class ItemService {
             foundItems = getAllItemsByCategoryId(request);
         }
         if (request.getCategoryId() == null && request.getUserId() != null) {
-            foundItems = geAllItemsByUserId(request);
+            foundItems = getAllItemsByUserId(request);
         }
         if (request.getCategoryId() != null && request.getUserId() != null) {
             foundItems = getAllItemsByCategoryIdAndUserId(request);
@@ -64,17 +66,17 @@ public class ItemService {
         return foundItems;
     }
 
-    private Page<ItemDto> getAllItemsByCategoryIdAndUserId(ItemSearchRequest request) {
+    public Page<ItemDto> getAllItemsByCategoryIdAndUserId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
         if (request.getSortDirection().equals("ASC")) {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryIdAndUserId(request.getCategoryId(),
                             request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
                                     Sort.by(Sort.Order.asc(request.getSortParam())))));
         } else {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryIdAndUserId(request.getCategoryId(),
                             request.getUserId(),
                             request.getPhrase(),
@@ -84,16 +86,16 @@ public class ItemService {
         return foundItems;
     }
 
-    private Page<ItemDto> geAllItemsByUserId(ItemSearchRequest request) {
+    public Page<ItemDto> getAllItemsByUserId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
         if (request.getSortDirection().equals("ASC")) {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByUserId(request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
                                     Sort.by(Sort.Order.asc(request.getSortParam())))));
         } else {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByUserId(request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
@@ -102,16 +104,16 @@ public class ItemService {
         return foundItems;
     }
 
-    private Page<ItemDto> getAllItemsByCategoryId(ItemSearchRequest request) {
+    public Page<ItemDto> getAllItemsByCategoryId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
         if (request.getSortDirection().equals("ASC")) {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryId(request.getCategoryId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
                                     Sort.by(Sort.Order.asc(request.getSortParam())))));
         } else {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryId(request.getCategoryId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
@@ -120,15 +122,15 @@ public class ItemService {
         return foundItems;
     }
 
-    private Page<ItemDto> getAllItems(ItemSearchRequest request) {
+    public Page<ItemDto> getAllItems(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
         if (request.getSortDirection().equals("ASC")) {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAll(request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
                                     Sort.by(Sort.Order.asc(request.getSortParam())))));
         } else {
-            foundItems = Converter.itemPageToDto(itemRepository
+            foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAll(request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
                                     Sort.by(Sort.Order.desc(request.getSortParam())))));
@@ -149,7 +151,8 @@ public class ItemService {
 
     public ItemDto addItem(ItemDto itemDto) {
         itemDto.setPrice(itemDto.getPrice().setScale(2, RoundingMode.CEILING));
-        return Converter.itemToDto((itemRepository.save(Converter.dtoToItem(itemDto))));
+        Item insertedItem = converter.itemDtoToItem(itemDto);
+        return converter.itemToItemDto((itemRepository.save(insertedItem)));
     }
 
     public void deleteItem(Long itemID) {
@@ -157,6 +160,6 @@ public class ItemService {
     }
 
     public boolean isItemExists(Long itemId) {
-        return !itemRepository.existsById(itemId);
+        return itemRepository.existsById(itemId);
     }
 }

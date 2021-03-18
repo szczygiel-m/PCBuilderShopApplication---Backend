@@ -1,6 +1,7 @@
 package com.szczygiel.pcbuildershop.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,10 +15,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Size(min = 8, max = 32, message = "Field 'category' should be minimum 8 chars and maximum 32 chars.")
@@ -27,7 +29,7 @@ public class Category {
     @Size(max = 250, message = "Field 'description' should be max 250 chars.")
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Item> items;
 }

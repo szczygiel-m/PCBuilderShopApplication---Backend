@@ -1,6 +1,6 @@
 package com.szczygiel.pcbuildershop.service;
 
-import com.szczygiel.pcbuildershop.dto.Converter;
+import com.szczygiel.pcbuildershop.util.DtoConverter;
 import com.szczygiel.pcbuildershop.dto.UserDto;
 import com.szczygiel.pcbuildershop.dto.LoginDto;
 import com.szczygiel.pcbuildershop.dto.RegisterDto;
@@ -14,9 +14,11 @@ import java.util.Optional;
 public class UserProfileService {
 
     private final UserProfileRepository userProfileRepository;
+    private final DtoConverter converter;
 
-    public UserProfileService(UserProfileRepository userProfileRepository) {
+    public UserProfileService(UserProfileRepository userProfileRepository, DtoConverter converter) {
         this.userProfileRepository = userProfileRepository;
+        this.converter = converter;
     }
 
     public Optional<UserDto> getUserProfile(Long userId){
@@ -29,13 +31,13 @@ public class UserProfileService {
         UserProfile userProfile = userProfileRepository.findByUsername(loginDto.getUsername());
         if(userProfile != null){
             if(userProfile.getPassword().equals(loginDto.getPassword())) {
-                return "Succesfuly logged in!";
+                return "Successfully logged in!";
             }
         }
-        return "Invalid Field 'username' or 'password'";
+        return "Invalid Field 'username' or 'password'.";
     }
 
-    public UserProfile registerUser(RegisterDto userProfile) {
-        return userProfileRepository.save(Converter.registerDtoToUser(userProfile));
+    public UserProfile registerUser(RegisterDto registerDto) {
+        return userProfileRepository.save(converter.registerDtoToUser(registerDto));
     }
 }

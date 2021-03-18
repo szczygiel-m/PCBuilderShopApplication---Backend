@@ -1,6 +1,7 @@
 package com.szczygiel.pcbuildershop.util;
 
 import com.szczygiel.pcbuildershop.dto.ItemDto;
+import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.repository.CategoryRepository;
 import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -30,7 +31,7 @@ public class ValidationUtil {
         return String.join(". ", errorsMessages);
     }
 
-    public String validItemDto(ItemDto itemDto) {
+    public String validateItemDto(ItemDto itemDto) {
         String response = "";
 
         if(!isUserExisting(itemDto.getUserId())) {
@@ -43,7 +44,7 @@ public class ValidationUtil {
             response += "Invalid title. ";
         }
         if(!isDescriptionValid(itemDto.getDescription())) {
-            response += "Invalid description";
+            response += "Invalid description.";
         }
 
         return response;
@@ -85,5 +86,17 @@ public class ValidationUtil {
         if(sortParam.equals("created") || sortParam.equals("price"))
             return sortParam;
         return "created";
+    }
+
+    public boolean isRegisterDtoValid(RegisterDto userProfile) {
+        return !isUsernameExists(userProfile.getUsername()) && !isEmailUsed(userProfile.getEmail());
+    }
+
+    public boolean isUsernameExists(String userProfile) {
+        return userProfileRepository.existsByUsername(userProfile);
+    }
+
+    public boolean isEmailUsed(String email) {
+        return userProfileRepository.existsByEmail(email);
     }
 }

@@ -53,7 +53,7 @@ public class ItemController {
 
     @PostMapping
     public ItemDto addItem(@RequestBody ItemDto itemDto){
-        String errors = validationUtil.validItemDto(itemDto);
+        String errors = validationUtil.validateItemDto(itemDto);
 
         if(!errors.isEmpty()) {
             throw new InvalidItemException(errors);

@@ -1,12 +1,9 @@
 package com.szczygiel.pcbuildershop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -15,19 +12,20 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @NotBlank(message = "Field 'category' is mandatory")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private Category category;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     private UserProfile userProfile;
 
@@ -37,7 +35,6 @@ public class Item {
     @Size(max = 250, message = "Field 'description' should be max 250 chars.")
     private String description;
 
-    @NotBlank(message = "Field 'created' should be valid")
     private LocalDateTime created;
 
     @PositiveOrZero(message = "Field 'price' should be positive or zero.")

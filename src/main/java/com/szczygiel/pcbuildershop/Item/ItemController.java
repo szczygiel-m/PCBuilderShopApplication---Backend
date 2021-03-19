@@ -1,11 +1,8 @@
-package com.szczygiel.pcbuildershop.controller;
+package com.szczygiel.pcbuildershop.Item;
 
-import com.szczygiel.pcbuildershop.dto.ItemDto;
-import com.szczygiel.pcbuildershop.dto.ItemSearchRequest;
 import com.szczygiel.pcbuildershop.exception.InvalidItemException;
 import com.szczygiel.pcbuildershop.exception.InvalidRequestException;
 import com.szczygiel.pcbuildershop.exception.ItemNotFoundException;
-import com.szczygiel.pcbuildershop.service.ItemService;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

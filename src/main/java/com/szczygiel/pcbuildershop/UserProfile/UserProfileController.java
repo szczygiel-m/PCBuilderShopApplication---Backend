@@ -1,13 +1,8 @@
-package com.szczygiel.pcbuildershop.controller;
+package com.szczygiel.pcbuildershop.UserProfile;
 
-import com.szczygiel.pcbuildershop.dto.UserDto;
-import com.szczygiel.pcbuildershop.dto.LoginDto;
-import com.szczygiel.pcbuildershop.dto.RegisterDto;
 import com.szczygiel.pcbuildershop.exception.InvalidLoginException;
 import com.szczygiel.pcbuildershop.exception.InvalidRegisterException;
 import com.szczygiel.pcbuildershop.exception.UserNotFoundException;
-import com.szczygiel.pcbuildershop.model.UserProfile;
-import com.szczygiel.pcbuildershop.service.UserProfileService;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,12 @@
 package com.szczygiel.pcbuildershop;
 
-import com.szczygiel.pcbuildershop.dto.CategoryDto;
-import com.szczygiel.pcbuildershop.dto.ItemDto;
-import com.szczygiel.pcbuildershop.dto.LoginDto;
-import com.szczygiel.pcbuildershop.dto.RegisterDto;
-import com.szczygiel.pcbuildershop.model.Category;
-import com.szczygiel.pcbuildershop.model.Item;
-import com.szczygiel.pcbuildershop.model.UserProfile;
+import com.szczygiel.pcbuildershop.Category.CategoryDto;
+import com.szczygiel.pcbuildershop.Item.ItemDto;
+import com.szczygiel.pcbuildershop.UserProfile.LoginDto;
+import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
+import com.szczygiel.pcbuildershop.Category.Category;
+import com.szczygiel.pcbuildershop.Item.Item;
+import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -34,7 +34,7 @@ public class DataTestSamples {
         return List.of(
                 new ItemDto(1L, 1L, 1L, LocalDateTime.now(), "Ryzen 3600", "16 rdzeni, 32 wątki - najlepszy w swoim rodzaju", BigDecimal.valueOf(100.35)),
                 new ItemDto(2L, 1L, 2L, LocalDateTime.now(), "Intel i5-8300H", "Architektura 14nm++++++++ robi swoje.", BigDecimal.valueOf(50.45)),
-                new ItemDto(3L, 3L, 3L, LocalDateTime.now(), "SSD ADATA 512GB", "Duża pojemność, zmieści sporo gier.", BigDecimal.valueOf(25.99))
+                new ItemDto(3L, 2L, 3L, LocalDateTime.now(), "SSD ADATA 512GB", "Duża pojemność, zmieści sporo gier.", BigDecimal.valueOf(25.99))
         );
     }
 

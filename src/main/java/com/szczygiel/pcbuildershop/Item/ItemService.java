@@ -1,10 +1,6 @@
-package com.szczygiel.pcbuildershop.service;
+package com.szczygiel.pcbuildershop.Item;
 
 import com.szczygiel.pcbuildershop.util.DtoConverter;
-import com.szczygiel.pcbuildershop.dto.ItemDto;
-import com.szczygiel.pcbuildershop.dto.ItemSearchRequest;
-import com.szczygiel.pcbuildershop.model.Item;
-import com.szczygiel.pcbuildershop.repository.ItemRepository;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

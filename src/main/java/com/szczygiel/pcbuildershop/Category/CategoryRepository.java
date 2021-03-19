@@ -1,6 +1,5 @@
-package com.szczygiel.pcbuildershop.repository;
+package com.szczygiel.pcbuildershop.Category;
 
-import com.szczygiel.pcbuildershop.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {

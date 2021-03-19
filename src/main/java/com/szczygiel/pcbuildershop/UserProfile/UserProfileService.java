@@ -1,11 +1,6 @@
-package com.szczygiel.pcbuildershop.service;
+package com.szczygiel.pcbuildershop.UserProfile;
 
 import com.szczygiel.pcbuildershop.util.DtoConverter;
-import com.szczygiel.pcbuildershop.dto.UserDto;
-import com.szczygiel.pcbuildershop.dto.LoginDto;
-import com.szczygiel.pcbuildershop.dto.RegisterDto;
-import com.szczygiel.pcbuildershop.model.UserProfile;
-import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

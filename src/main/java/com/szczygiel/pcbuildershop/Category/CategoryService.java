@@ -1,9 +1,6 @@
-package com.szczygiel.pcbuildershop.service;
+package com.szczygiel.pcbuildershop.Category;
 
-import com.szczygiel.pcbuildershop.dto.CategoryDto;
 import com.szczygiel.pcbuildershop.util.DtoConverter;
-import com.szczygiel.pcbuildershop.model.Category;
-import com.szczygiel.pcbuildershop.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 @Service

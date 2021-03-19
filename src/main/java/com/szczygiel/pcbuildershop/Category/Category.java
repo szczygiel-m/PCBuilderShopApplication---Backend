@@ -1,6 +1,7 @@
-package com.szczygiel.pcbuildershop.model;
+package com.szczygiel.pcbuildershop.Category;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.szczygiel.pcbuildershop.Item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

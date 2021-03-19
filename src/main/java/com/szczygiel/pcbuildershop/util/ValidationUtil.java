@@ -1,9 +1,9 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.dto.ItemDto;
-import com.szczygiel.pcbuildershop.dto.RegisterDto;
-import com.szczygiel.pcbuildershop.repository.CategoryRepository;
-import com.szczygiel.pcbuildershop.repository.UserProfileRepository;
+import com.szczygiel.pcbuildershop.Item.ItemDto;
+import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
+import com.szczygiel.pcbuildershop.Category.CategoryRepository;
+import com.szczygiel.pcbuildershop.UserProfile.UserProfileRepository;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

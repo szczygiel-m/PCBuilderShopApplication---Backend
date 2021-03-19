@@ -1,4 +1,4 @@
-package com.szczygiel.pcbuildershop.dto;
+package com.szczygiel.pcbuildershop.UserProfile;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

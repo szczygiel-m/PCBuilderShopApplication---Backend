@@ -1,9 +1,6 @@
-package com.szczygiel.pcbuildershop.controller;
+package com.szczygiel.pcbuildershop.Category;
 
-import com.szczygiel.pcbuildershop.dto.CategoryDto;
 import com.szczygiel.pcbuildershop.exception.InvalidCategoryException;
-import com.szczygiel.pcbuildershop.model.Category;
-import com.szczygiel.pcbuildershop.service.CategoryService;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;

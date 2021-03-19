@@ -1,6 +1,5 @@
-package com.szczygiel.pcbuildershop.repository;
+package com.szczygiel.pcbuildershop.Item;
 
-import com.szczygiel.pcbuildershop.model.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;

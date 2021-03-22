@@ -30,7 +30,6 @@ public class UserProfileServiceTest {
         assertNotNull(newUser.getId());
     }
 
-
     @Test
     public void validLogin_ShouldLogIn() {
         //given

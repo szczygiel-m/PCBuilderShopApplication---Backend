@@ -6,6 +6,7 @@ import com.szczygiel.pcbuildershop.exception.ItemNotFoundException;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -13,8 +14,6 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @RequestMapping("item")
 public class ItemController {
-
-    //todo add sorting by price as not required requestparam
 
     private final ItemService itemService;
     private final ValidationUtil validationUtil;
@@ -49,6 +48,7 @@ public class ItemController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ItemDto addItem(@RequestBody ItemDto itemDto){
         String errors = validationUtil.validateItemDto(itemDto);
 

@@ -3,11 +3,9 @@ package com.szczygiel.pcbuildershop.Category;
 import com.szczygiel.pcbuildershop.exception.InvalidCategoryException;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
@@ -26,6 +24,7 @@ public class CategoryController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public Category addCategory(@Valid @RequestBody CategoryDto category, @ApiIgnore Errors errors) {
         if(errors.hasErrors()) {
             throw new InvalidCategoryException(validationUtil.getErrorsMessages(errors));

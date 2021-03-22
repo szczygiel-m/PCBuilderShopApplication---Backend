@@ -4,6 +4,7 @@ import com.szczygiel.pcbuildershop.exception.InvalidLoginException;
 import com.szczygiel.pcbuildershop.exception.InvalidRegisterException;
 import com.szczygiel.pcbuildershop.exception.UserNotFoundException;
 import com.szczygiel.pcbuildershop.util.ValidationUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -38,6 +39,7 @@ public class UserProfileController {
     }
 
     @PostMapping("register")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserProfile register(@Valid @RequestBody RegisterDto userProfile, @ApiIgnore Errors errors) {
         if(!validationUtil.isRegisterDtoValid(userProfile)) {
             throw new InvalidRegisterException("Username or email already used.");

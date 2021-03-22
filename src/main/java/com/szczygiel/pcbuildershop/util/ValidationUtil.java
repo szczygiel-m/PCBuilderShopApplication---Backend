@@ -1,10 +1,12 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.Item.ItemDto;
-import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
 import com.szczygiel.pcbuildershop.Category.CategoryRepository;
+import com.szczygiel.pcbuildershop.Item.ItemDto;
+import com.szczygiel.pcbuildershop.Item.ItemSearchRequest;
+import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfileRepository;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
@@ -82,12 +84,6 @@ public class ValidationUtil {
         return size;
     }
 
-    public String validateSortParam(String sortParam) {
-        if(sortParam.equals("created") || sortParam.equals("price"))
-            return sortParam;
-        return "created";
-    }
-
     public boolean isRegisterDtoValid(RegisterDto userProfile) {
         return !isUsernameExists(userProfile.getUsername()) && !isEmailUsed(userProfile.getEmail());
     }
@@ -98,5 +94,17 @@ public class ValidationUtil {
 
     public boolean isEmailUsed(String email) {
         return userProfileRepository.existsByEmail(email);
+    }
+
+    public ItemSearchRequest.SortParamEnum validateSortParam(ItemSearchRequest.SortParamEnum sortParam) {
+        if(sortParam.equals(ItemSearchRequest.SortParamEnum.PRICE) || sortParam.equals(ItemSearchRequest.SortParamEnum.CREATED))
+            return sortParam;
+        return ItemSearchRequest.SortParamEnum.CREATED;
+    }
+
+    public Sort.Direction validateSortDirection(Sort.Direction sortDirection) {
+        if(sortDirection.equals(Sort.Direction.ASC) || sortDirection.equals(Sort.Direction.DESC))
+            return sortDirection;
+        return Sort.Direction.ASC;
     }
 }

@@ -28,5 +28,4 @@ public class CategoryServiceTest {
         assertEquals(categoryDto.getCategory(), addedCategory.getCategory());
         assertEquals(categoryDto.getDescription(), addedCategory.getDescription());
     }
-
 }

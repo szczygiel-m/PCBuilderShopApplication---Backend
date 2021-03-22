@@ -45,6 +45,7 @@ public class ItemService {
         request.setPage(validationUtil.validatePage(request.getPage()));
         request.setSize(validationUtil.validateSize(request.getSize()));
         request.setSortParam(validationUtil.validateSortParam(request.getSortParam()));
+        request.setSortDirection(validationUtil.validateSortDirection(request.getSortDirection()));
 
         if (request.getCategoryId() == null && request.getUserId() == null) {
             foundItems = getAllItems(request);
@@ -64,72 +65,72 @@ public class ItemService {
 
     public Page<ItemDto> getAllItemsByCategoryIdAndUserId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
-        if (request.getSortDirection().equals("ASC")) {
+        if (request.getSortDirection().equals(Sort.Direction.ASC)) {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryIdAndUserId(request.getCategoryId(),
                             request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.asc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.asc(request.getSortParam().toString())))));
         } else {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryIdAndUserId(request.getCategoryId(),
                             request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.desc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.desc(request.getSortParam().toString())))));
         }
         return foundItems;
     }
 
     public Page<ItemDto> getAllItemsByUserId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
-        if (request.getSortDirection().equals("ASC")) {
+        if (request.getSortDirection().equals(Sort.Direction.ASC)) {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByUserId(request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.asc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.asc(request.getSortParam().toString())))));
         } else {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByUserId(request.getUserId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.desc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.desc(request.getSortParam().toString())))));
         }
         return foundItems;
     }
 
     public Page<ItemDto> getAllItemsByCategoryId(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
-        if (request.getSortDirection().equals("ASC")) {
+        if (request.getSortDirection().equals(Sort.Direction.ASC)) {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryId(request.getCategoryId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.asc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.asc(request.getSortParam().toString())))));
         } else {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAllByCategoryId(request.getCategoryId(),
                             request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.desc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.desc(request.getSortParam().toString())))));
         }
         return foundItems;
     }
 
     public Page<ItemDto> getAllItems(ItemSearchRequest request) {
         Page<ItemDto> foundItems;
-        if (request.getSortDirection().equals("ASC")) {
+        if (request.getSortDirection().equals(Sort.Direction.ASC)) {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAll(request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.asc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.asc(request.getSortParam().toString())))));
         } else {
             foundItems = converter.itemPageCollectionToItemDtoCollection(itemRepository
                     .findAll(request.getPhrase(),
                             PageRequest.of(request.getPage(), request.getSize(),
-                                    Sort.by(Sort.Order.desc(request.getSortParam())))));
+                                    Sort.by(Sort.Order.desc(request.getSortParam().toString())))));
         }
         return foundItems;
     }

@@ -84,8 +84,8 @@ public class DtoConverterTest {
     @Test
     public void inValidItemDto_shouldThrowException() {
         //given
-        ItemDto itemDto = DataTestSamples.getItemDtoSamples().get(0);
         //when
+        ItemDto itemDto = DataTestSamples.getItemDtoSamples().get(0);
         //then
         assertThrows(NoSuchElementException.class, () -> converter.itemDtoToItem(itemDto));
     }

@@ -3,6 +3,7 @@ package com.szczygiel.pcbuildershop.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -30,7 +31,17 @@ public class ItemSearchRequest {
     @PositiveOrZero(message = "Field 'page' should be positivee or zero.")
     private int size = 10;
 
-    private String sortParam = "created";
+    private SortParamEnum sortParam = SortParamEnum.CREATED;
 
-    private String sortDirection = "ASC";
+    private Sort.Direction sortDirection = Sort.Direction.ASC;
+
+    public enum SortParamEnum{
+        CREATED,
+        PRICE;
+
+        @Override
+        public String toString() {
+            return name().toLowerCase();
+        }
+    }
 }

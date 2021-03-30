@@ -1,8 +1,8 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.Category.Category;
-import com.szczygiel.pcbuildershop.Category.CategoryDto;
-import com.szczygiel.pcbuildershop.Category.CategoryService;
+import com.szczygiel.pcbuildershop.category.Category;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.category.CategoryService;
 import com.szczygiel.pcbuildershop.DataTestSamples;
 import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.Item.ItemDto;

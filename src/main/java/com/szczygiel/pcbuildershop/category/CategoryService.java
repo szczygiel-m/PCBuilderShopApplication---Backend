@@ -1,4 +1,4 @@
-package com.szczygiel.pcbuildershop.Category;
+package com.szczygiel.pcbuildershop.category;
 
 import com.szczygiel.pcbuildershop.util.DtoConverter;
 import org.springframework.stereotype.Service;

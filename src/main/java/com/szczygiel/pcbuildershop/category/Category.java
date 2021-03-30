@@ -1,4 +1,4 @@
-package com.szczygiel.pcbuildershop.Category;
+package com.szczygiel.pcbuildershop.category;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.szczygiel.pcbuildershop.Item.Item;

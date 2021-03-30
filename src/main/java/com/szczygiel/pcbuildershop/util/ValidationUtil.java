@@ -1,6 +1,6 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.Category.CategoryRepository;
+import com.szczygiel.pcbuildershop.category.CategoryRepository;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.Item.ItemSearchRequest;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;

@@ -1,10 +1,10 @@
 package com.szczygiel.pcbuildershop;
 
-import com.szczygiel.pcbuildershop.Category.CategoryDto;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.LoginDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
-import com.szczygiel.pcbuildershop.Category.Category;
+import com.szczygiel.pcbuildershop.category.Category;
 import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
 

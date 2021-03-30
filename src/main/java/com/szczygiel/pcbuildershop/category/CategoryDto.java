@@ -1,4 +1,4 @@
-package com.szczygiel.pcbuildershop.Category;
+package com.szczygiel.pcbuildershop.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

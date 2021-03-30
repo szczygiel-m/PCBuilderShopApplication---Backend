@@ -1,4 +1,4 @@
-package com.szczygiel.pcbuildershop.Category;
+package com.szczygiel.pcbuildershop.category;
 
 import com.szczygiel.pcbuildershop.DataTestSamples;
 import org.junit.jupiter.api.Test;

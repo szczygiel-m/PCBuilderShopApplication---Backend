@@ -1,12 +1,12 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.Category.CategoryDto;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
-import com.szczygiel.pcbuildershop.Category.Category;
+import com.szczygiel.pcbuildershop.category.Category;
 import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
-import com.szczygiel.pcbuildershop.Category.CategoryRepository;
+import com.szczygiel.pcbuildershop.category.CategoryRepository;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfileRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

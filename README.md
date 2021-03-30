@@ -120,20 +120,20 @@ without problems). Just simply clone repo to your IDE and run it.
 ### Implemented
 
 * Categories crud
-* Offers crud
-* Account crud
+* User accounts crud
+* Items crud
 * JWT Token Authorization
 * Swagger
+* Searching items
+* Displaying items
+
+### Not fully implemented
+
+* Unit/e2e tests
 
 ### Not implemented yet
 
-* Searching offers
-* Displaying offers
-* Messaging users
-* Exchanging/Buying books
-* Recommendations
-* Unit/e2e tests
-* Continuous Integration
+* Buying items
 
 See the [open issues](https://github.com/szczygiel2000/PCBuilderShopApplication---Backend/issues) for a list of proposed
 features (and known issues).

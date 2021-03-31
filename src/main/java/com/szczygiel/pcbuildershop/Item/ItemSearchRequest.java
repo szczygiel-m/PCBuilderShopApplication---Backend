@@ -35,7 +35,7 @@ public class ItemSearchRequest {
 
     private Sort.Direction sortDirection = Sort.Direction.ASC;
 
-    public enum SortParamEnum{
+    public enum SortParamEnum {
         CREATED,
         PRICE;
 

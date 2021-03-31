@@ -1,5 +1,6 @@
 package com.szczygiel.pcbuildershop.jwt;
 
+import com.google.common.net.HttpHeaders;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,4 +17,8 @@ public class JwtConfig {
     private String secretKey;
     private String tokenPrefix;
     private Integer tokenExpirationAfterHours;
+
+    public String getAuthorizationHeader() {
+        return HttpHeaders.AUTHORIZATION;
+    }
 }

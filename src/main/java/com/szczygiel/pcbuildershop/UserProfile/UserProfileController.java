@@ -12,7 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("api/v1/user")
 public class UserProfileController {
 
     private final UserProfileService userProfileService;
@@ -31,7 +31,7 @@ public class UserProfileController {
 
     @PostMapping("login")
     public String login(@Valid @RequestBody LoginDto loginDto, @ApiIgnore Errors errors) {
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             throw new InvalidLoginException(validationUtil.getErrorsMessages(errors));
         }
 
@@ -41,10 +41,10 @@ public class UserProfileController {
     @PostMapping("register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserProfile register(@Valid @RequestBody RegisterDto userProfile, @ApiIgnore Errors errors) {
-        if(!validationUtil.isRegisterDtoValid(userProfile)) {
+        if (!validationUtil.isRegisterDtoValid(userProfile)) {
             throw new InvalidRegisterException("Username or email already used.");
         }
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             throw new InvalidRegisterException(validationUtil.getErrorsMessages(errors));
         }
 

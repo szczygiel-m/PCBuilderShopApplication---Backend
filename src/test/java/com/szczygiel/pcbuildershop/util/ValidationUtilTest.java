@@ -1,12 +1,13 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.category.Category;
-import com.szczygiel.pcbuildershop.category.CategoryRepository;
 import com.szczygiel.pcbuildershop.DataTestSamples;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfileRepository;
+import com.szczygiel.pcbuildershop.category.Category;
+import com.szczygiel.pcbuildershop.category.CategoryRepository;
+import com.szczygiel.pcbuildershop.security.ApplicationUserRole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -134,7 +135,7 @@ public class ValidationUtilTest {
         //given
         UserProfile userProfile = new UserProfile(null,
                 DataTestSamples.getRegisterDtoSamples().get(0).getUsername(),
-                "qwerty123", "notusedemail@gmail.com", null);
+                "qwerty123", ApplicationUserRole.USER, "notusedemail@gmail.com", null, false, false);
         userProfileRepository.save(userProfile);
         RegisterDto registerDto = DataTestSamples.getRegisterDtoSamples().get(0);
         //when
@@ -148,8 +149,8 @@ public class ValidationUtilTest {
         //given
         UserProfile userProfile = new UserProfile(null,
                 "notusedemail123",
-                "qwerty123",
-                DataTestSamples.getRegisterDtoSamples().get(1).getEmail(), null);
+                "qwerty123", ApplicationUserRole.USER,
+                DataTestSamples.getRegisterDtoSamples().get(1).getEmail(), null, false, false);
         userProfileRepository.save(userProfile);
         RegisterDto registerDto = DataTestSamples.getRegisterDtoSamples().get(1);
         //when

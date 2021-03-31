@@ -34,6 +34,7 @@ public class UserProfile implements UserDetails {
 
     @NotBlank(message = "Field 'password' is mandatory.")
     @Size(min = 8, message = "Field 'password' should be minimum 8 chars.")
+    @Column(length = 100)
     private String password;
 
     private ApplicationUserRole role = ApplicationUserRole.USER;
@@ -52,7 +53,7 @@ public class UserProfile implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return role.getGrantedAuthorities();
     }
 
     @Override

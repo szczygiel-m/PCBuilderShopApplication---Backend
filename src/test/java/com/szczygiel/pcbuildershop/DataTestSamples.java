@@ -1,12 +1,13 @@
 package com.szczygiel.pcbuildershop;
 
-import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.LoginDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
-import com.szczygiel.pcbuildershop.category.Category;
-import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
+import com.szczygiel.pcbuildershop.category.Category;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.security.ApplicationUserRole;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -46,11 +47,11 @@ public class DataTestSamples {
         );
     }
 
-    public static List<UserProfile> getUserProfileSamples(){
+    public static List<UserProfile> getUserProfileSamples() {
         return List.of(
-                new UserProfile(1L, "jlowdes0", "ad8PRESdw", "amarushak0@mediafire.com", null),
-                new UserProfile(2L, "cpodbury1", "2s8WFJKV6", "tdrever1@discovery.com", null),
-                new UserProfile(3L, "iodunniom2", "MMOOEcwn", "rlimming2@cdbaby.com", null)
+                new UserProfile(1L, "jlowdes0", "ad8PRESdw", ApplicationUserRole.USER, "amarushak0@mediafire.com", null, false, false),
+                new UserProfile(2L, "cpodbury1", "2s8WFJKV6", ApplicationUserRole.USER, "tdrever1@discovery.com", null, false, false),
+                new UserProfile(3L, "iodunniom2", "MMOOEcwn", ApplicationUserRole.USER, "rlimming2@cdbaby.com", null, false, false)
         );
     }
 
@@ -64,13 +65,13 @@ public class DataTestSamples {
 
     public static List<Item> getItemSamples() {
         return List.of(
-                new Item(1L, getCategorySamples().get(0),  getUserProfileSamples().get(0),
+                new Item(1L, getCategorySamples().get(0), getUserProfileSamples().get(0),
                         "Ryzen 3600", "16 rdzeni, 32 wątki - najlepszy w swoim rodzaju",
                         LocalDateTime.now(), BigDecimal.valueOf(100.35)),
-                new Item(2L, getCategorySamples().get(0),  getUserProfileSamples().get(1),
+                new Item(2L, getCategorySamples().get(0), getUserProfileSamples().get(1),
                         "Intel i5-8300H", "Architektura 14nm++++++++ robi swoje.",
                         LocalDateTime.now(), BigDecimal.valueOf(50.45)),
-                new Item(3L, getCategorySamples().get(2),  getUserProfileSamples().get(2),
+                new Item(3L, getCategorySamples().get(2), getUserProfileSamples().get(2),
                         "SSD ADATA 512GB", "Duża pojemność, zmieści sporo gier.",
                         LocalDateTime.now(), BigDecimal.valueOf(25.99))
 

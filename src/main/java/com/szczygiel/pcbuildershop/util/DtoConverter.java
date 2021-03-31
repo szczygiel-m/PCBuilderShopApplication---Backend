@@ -1,13 +1,13 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
-import com.szczygiel.pcbuildershop.category.Category;
-import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
-import com.szczygiel.pcbuildershop.category.CategoryRepository;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfileRepository;
+import com.szczygiel.pcbuildershop.category.Category;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.category.CategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DtoConverter {
-    
+
     private final CategoryRepository categoryRepository;
     private final UserProfileRepository userProfileRepository;
 

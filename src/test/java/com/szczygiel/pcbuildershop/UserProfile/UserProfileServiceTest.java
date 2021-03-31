@@ -39,7 +39,8 @@ public class UserProfileServiceTest {
         userProfileService.registerUser(registerDto);
         String response = userProfileService.login(loginDto);
         //then
-        assertEquals("Successfully logged in!", response);
+        assertNotNull(response);
+        assertNotEquals("Invalid Field 'username' or 'password'.", response);
     }
 
     @Test

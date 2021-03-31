@@ -1,8 +1,8 @@
 package com.szczygiel.pcbuildershop.Item;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.szczygiel.pcbuildershop.category.Category;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
+import com.szczygiel.pcbuildershop.category.Category;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,14 +1,14 @@
 package com.szczygiel.pcbuildershop.util;
 
-import com.szczygiel.pcbuildershop.category.Category;
-import com.szczygiel.pcbuildershop.category.CategoryDto;
-import com.szczygiel.pcbuildershop.category.CategoryService;
 import com.szczygiel.pcbuildershop.DataTestSamples;
 import com.szczygiel.pcbuildershop.Item.Item;
 import com.szczygiel.pcbuildershop.Item.ItemDto;
 import com.szczygiel.pcbuildershop.UserProfile.RegisterDto;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfile;
 import com.szczygiel.pcbuildershop.UserProfile.UserProfileService;
+import com.szczygiel.pcbuildershop.category.Category;
+import com.szczygiel.pcbuildershop.category.CategoryDto;
+import com.szczygiel.pcbuildershop.category.CategoryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

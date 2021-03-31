@@ -7,12 +7,13 @@ import com.szczygiel.pcbuildershop.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
-@RequestMapping("item")
+@RequestMapping("api/v1/item")
 public class ItemController {
 
     private final ItemService itemService;
@@ -32,7 +33,7 @@ public class ItemController {
 
     @GetMapping("search")
     public Page<ItemDto> searchForItems(ItemSearchRequest request, @ApiIgnore Errors errors) {
-        if(errors.hasErrors()) {
+        if (errors.hasErrors()) {
             throw new InvalidRequestException(validationUtil.getErrorsMessages(errors));
         }
 
@@ -40,6 +41,7 @@ public class ItemController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('item:update')")
     public ItemDto editItem(@RequestBody ItemDto editedItem) {
         if (itemService.isItemExists(editedItem.getId())) {
             throw new ItemNotFoundException(editedItem.getId());
@@ -49,10 +51,11 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto addItem(@RequestBody ItemDto itemDto){
+    @PreAuthorize("hasAuthority('item:add')")
+    public ItemDto addItem(@RequestBody ItemDto itemDto) {
         String errors = validationUtil.validateItemDto(itemDto);
 
-        if(!errors.isEmpty()) {
+        if (!errors.isEmpty()) {
             throw new InvalidItemException(errors);
         }
 
@@ -60,6 +63,7 @@ public class ItemController {
     }
 
     @DeleteMapping("{itemId}")
+    @PreAuthorize("hasAuthority('item:delete')")
     public void deleteItem(@PathVariable Long itemId) {
         if (itemService.isItemExists(itemId)) {
             throw new ItemNotFoundException(itemId);

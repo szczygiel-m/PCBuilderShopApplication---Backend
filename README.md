@@ -42,7 +42,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -64,7 +63,7 @@ Pc Builder Shop Application help users to improve their PC's by selling parts an
 
 If you want to see frontend code go [here](https://github.com/szczygiel2000/PCBuilderShopApplication---Frontend).
 
-### Backend Built With
+### Built With
 
 * [Java](https://java.com/)
 * [Spring Boot](https://spring.io/)
@@ -115,7 +114,7 @@ to [releases](https://github.com/szczygiel2000/PCBuilderShopApplication---Backen
 want, you can download code from any branch (be carefully, there is no guaranty that this code will run or compile
 without problems). Just simply clone repo to your IDE and run it.
 
-## Features (backend part)
+## Features
 
 ### Implemented
 
@@ -134,6 +133,7 @@ without problems). Just simply clone repo to your IDE and run it.
 ### Not implemented yet
 
 * Buying items
+* Email confirmation
 
 See the [open issues](https://github.com/szczygiel2000/PCBuilderShopApplication---Backend/issues) for a list of proposed
 features (and known issues).

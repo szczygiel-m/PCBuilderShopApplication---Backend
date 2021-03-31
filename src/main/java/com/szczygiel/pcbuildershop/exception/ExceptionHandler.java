@@ -26,10 +26,10 @@ public class ExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @org.springframework.web.bind.annotation.ExceptionHandler(
             {InvalidItemException.class,
-            InvalidLoginException.class,
-            InvalidCategoryException.class,
-            InvalidRegisterException.class,
-            InvalidRequestException.class}
+                    InvalidLoginException.class,
+                    InvalidCategoryException.class,
+                    InvalidRegisterException.class,
+                    InvalidRequestException.class}
     )
     public ExceptionResponseBody badRequestHandler(RuntimeException e) {
         responseBody.setMessage(e.getMessage());

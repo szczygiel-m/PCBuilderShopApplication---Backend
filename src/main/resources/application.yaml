@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/production
+    username: root
+    password: admin
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+application:
+  jwt:
+    secretKey: 'asdasdasdasdasdasdasdasdasdasdasdfasdfasdfasdfasdfasdfasdfasdf'
+    tokenPrefix: 'Bearer '
+    tokenExpirationAfterHours: 48
+
+

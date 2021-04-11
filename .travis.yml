@@ -1,5 +1,9 @@
 language: java
 jdk: openjdk11
+sudo: enabled
+
+services:
+  - mysql
+
 before_install:
-  - chmod +x gradlew
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysql -e 'CREATE DATABASE test;'

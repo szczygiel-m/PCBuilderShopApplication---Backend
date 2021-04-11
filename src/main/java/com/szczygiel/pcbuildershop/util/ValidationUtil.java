@@ -85,7 +85,16 @@ public class ValidationUtil {
     }
 
     public boolean isRegisterDtoValid(RegisterDto userProfile) {
-        return !isUsernameExists(userProfile.getUsername()) && !isEmailUsed(userProfile.getEmail());
+        if (userProfile.getUsername() == null || userProfile.getEmail() == null || userProfile.getPassword() == null) {
+            return false;
+        }
+        return !isUsernameExists(userProfile.getUsername()) && !isEmailUsed(userProfile.getEmail()) && isRegisterRequestValid(userProfile);
+    }
+
+    private boolean isRegisterRequestValid(RegisterDto userProfile) {
+        return userProfile.getUsername().length() >= 4 &&
+                userProfile.getUsername().length() <= 32 &&
+                userProfile.getPassword().length() >= 8;
     }
 
     public boolean isUsernameExists(String userProfile) {

@@ -42,7 +42,7 @@ public class UserProfileService implements UserDetailsService {
             if (passwordEncoder.matches(loginDto.getPassword(), userProfile.getPassword())) {
                 long expirationTime = jwtConfig.getTokenExpirationAfterHours() * 60 * 60 * 1000;
 
-                return Jwts.builder()
+                return "Bearer " + Jwts.builder()
                         .setSubject(userProfile.getUsername())
                         .claim("authorities", userProfile.getAuthorities())
                         .setIssuedAt(new Date())

@@ -1,5 +1,6 @@
 package com.szczygiel.pcbuildershop.UserProfile;
 
+import com.szczygiel.pcbuildershop.exception.ForbiddenException;
 import com.szczygiel.pcbuildershop.exception.InvalidLoginException;
 import com.szczygiel.pcbuildershop.exception.InvalidRegisterException;
 import com.szczygiel.pcbuildershop.exception.UserNotFoundException;
@@ -35,19 +36,24 @@ public class UserProfileController {
             throw new InvalidLoginException(validationUtil.getErrorsMessages(errors));
         }
 
-        return userProfileService.login(loginDto);
+        String loginResponse = userProfileService.login(loginDto);
+        if (!loginResponse.startsWith("Bearer ")) {
+            throw new ForbiddenException(loginResponse);
+        }
+
+        return loginResponse;
     }
 
     @PostMapping("register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserProfile register(@Valid @RequestBody RegisterDto userProfile, @ApiIgnore Errors errors) {
+    public String register(@Valid @RequestBody RegisterDto userProfile, @ApiIgnore Errors errors) {
         if (!validationUtil.isRegisterDtoValid(userProfile)) {
-            throw new InvalidRegisterException("Username or email already used.");
+            throw new InvalidRegisterException("Invalid register request.");
         }
         if (errors.hasErrors()) {
             throw new InvalidRegisterException(validationUtil.getErrorsMessages(errors));
         }
 
-        return userProfileService.registerUser(userProfile);
+        return "Successfully registered!";
     }
 }

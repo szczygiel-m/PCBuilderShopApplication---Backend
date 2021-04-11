@@ -38,4 +38,16 @@ public class ExceptionHandler {
 
         return responseBody;
     }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @org.springframework.web.bind.annotation.ExceptionHandler(
+            {ForbiddenException.class}
+    )
+    public ExceptionResponseBody forbiddenHandler(RuntimeException e) {
+        responseBody.setMessage(e.getMessage());
+        responseBody.setTimestamp(LocalDateTime.now());
+        responseBody.setStatus("403");
+
+        return responseBody;
+    }
 }

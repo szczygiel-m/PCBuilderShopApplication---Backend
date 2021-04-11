@@ -5,5 +5,3 @@ services:
 before_install:
   - chmod +x gradlew
   - mysql -e 'CREATE DATABASE test;'
-  - mysql -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'admin';"
-  - mysql -e "GRANT ALL ON test.* TO 'root'@'localhost';"

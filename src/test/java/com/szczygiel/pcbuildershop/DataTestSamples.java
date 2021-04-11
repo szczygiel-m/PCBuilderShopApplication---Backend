@@ -49,9 +49,9 @@ public class DataTestSamples {
 
     public static List<UserProfile> getUserProfileSamples() {
         return List.of(
-                new UserProfile(1L, "jlowdes0", "ad8PRESdw", ApplicationUserRole.USER, "amarushak0@mediafire.com", null, false, false),
-                new UserProfile(2L, "cpodbury1", "2s8WFJKV6", ApplicationUserRole.USER, "tdrever1@discovery.com", null, false, false),
-                new UserProfile(3L, "iodunniom2", "MMOOEcwn", ApplicationUserRole.USER, "rlimming2@cdbaby.com", null, false, false)
+                new UserProfile(null, "jlowdes0", "ad8PRESdw", ApplicationUserRole.USER, "amarushak0@mediafire.com", null, false, false),
+                new UserProfile(null, "cpodbury1", "2s8WFJKV6", ApplicationUserRole.USER, "tdrever1@discovery.com", null, false, false),
+                new UserProfile(null, "iodunniom2", "MMOOEcwn", ApplicationUserRole.USER, "rlimming2@cdbaby.com", null, false, false)
         );
     }
 

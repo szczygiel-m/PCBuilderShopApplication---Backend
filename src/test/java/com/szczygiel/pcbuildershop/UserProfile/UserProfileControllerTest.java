@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @Transactional
 public class UserProfileControllerTest {
 
-    private static final String userProfileControllerPath = "/api/v1/user";
+    private static final String userProfileControllerPath = "/api/v1/users";
     private static String token;
 
     @Autowired

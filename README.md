@@ -67,7 +67,7 @@ If you want to see frontend code go [here](https://github.com/szczygiel2000/PCBu
 
 * [Java](https://java.com/)
 * [Spring Boot](https://spring.io/)
-* [MongoDB](https://www.mysql.com/)
+* [MySQL](https://www.mysql.com/)
 * [Junit 5](https://junit.org/junit5/)
 
 <!-- GETTING STARTED -->

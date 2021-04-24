@@ -13,7 +13,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("api/v1/users")
 public class UserProfileController {
 
     private final UserProfileService userProfileService;

@@ -74,7 +74,7 @@ If you want to see frontend code go [here](https://github.com/szczygiel2000/PCBu
 
 ## Getting Started
 
-To quickly run local Exbook server follow instructions bellow
+To quickly run local PCBuilderShop server follow instructions bellow
 
 ### MySQL setup
 
